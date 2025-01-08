@@ -1,9 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_todo_list/domain/entity/group.dart';
 
 class TaskWidgetModel extends ChangeNotifier {
   final int groupKey;
+  late final Future<Box<Group>> _groupBox;
+  Group? _groups;
+  Group? get groups => _groups;
 
-  TaskWidgetModel({required this.groupKey});
+  TaskWidgetModel({required this.groupKey}) {
+    setup();
+  }
+
+  void loadGroup() async {
+    final box = await _groupBox;
+    _groups = box.get(groupKey);
+    print(_groups);
+    notifyListeners();
+  }
+
+  void setup() {
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(GroupAdapter());
+    }
+    _groupBox = Hive.openBox("group_box");
+    loadGroup();
+  }
 }
 
 class TaskWidgetProvider extends InheritedNotifier {

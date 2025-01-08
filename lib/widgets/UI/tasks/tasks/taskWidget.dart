@@ -38,11 +38,17 @@ class TaskWidetBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = TaskWidgetProvider.watch(context)?.model;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tasks"),
+        title: Text(model?.groups?.name ?? "Tasks"),
       ),
       body: Container(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        child: Icon(Icons.add),
+      ),
     );
   }
 }

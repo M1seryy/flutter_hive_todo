@@ -46,7 +46,7 @@ class TaskWidetBody extends StatelessWidget {
       ),
       body: Container(),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed:()=> model?.openForm(context),
         child: Icon(Icons.add),
       ),
     );

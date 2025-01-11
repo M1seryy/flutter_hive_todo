@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive_todo_list/domain/entity/group.dart';
+import 'package:hive_todo_list/domain/entity/task.dart';
 
 class TaskWidgetModel extends ChangeNotifier {
+  var _tasks = <Task>[];
+
+  List<Task> get tasks => _tasks.toList();
+
   final int groupKey;
   late final Future<Box<Group>> _groupBox;
   Group? _groups;
@@ -12,11 +17,20 @@ class TaskWidgetModel extends ChangeNotifier {
     setup();
   }
 
+  // void _readTasks() {
+  //   _tasks = _groups.tasks ?? <Task>[];
+  //   notifyListeners();
+  // }
+
   void loadGroup() async {
     final box = await _groupBox;
     _groups = box.get(groupKey);
     print(_groups);
     notifyListeners();
+  }
+
+  void openForm(BuildContext context) {
+    Navigator.of(context).pushNamed('/groups/task/form', arguments: groupKey);
   }
 
   void setup() {

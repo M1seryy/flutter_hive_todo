@@ -27,26 +27,26 @@ class taskFormModel {
   }
 }
 
-// class GroupFormProvider extends InheritedWidget {
-//   final groupFormModel model;
+class TaskFormProvider extends InheritedWidget {
+  final taskFormModel model;
 
-//   final Widget child;
-//   const GroupFormProvider({super.key, required this.child, required this.model})
-//       : super(child: child);
+  final Widget child;
+  const TaskFormProvider({super.key, required this.child, required this.model})
+      : super(child: child);
 
-  // static GroupFormProvider? watch(BuildContext context) {
-  //   return context.dependOnInheritedWidgetOfExactType<GroupFormProvider>();
-  // }
+  static TaskFormProvider? watch(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<TaskFormProvider>();
+  }
 
-//   static GroupFormProvider? read(BuildContext context) {
-//     final widget = context
-//         .getElementForInheritedWidgetOfExactType<GroupFormProvider>()
-//         ?.widget;
-//     return widget is GroupFormProvider ? widget : null;
-//   }
+  static TaskFormProvider? read(BuildContext context) {
+    final widget = context
+        .getElementForInheritedWidgetOfExactType<TaskFormProvider>()
+        ?.widget;
+    return widget is TaskFormProvider ? widget : null;
+  }
 
-//   @override
-//   bool updateShouldNotify(GroupFormProvider oldWidget) {
-//     return true;
-//   }
-// }
+  @override
+  bool updateShouldNotify(TaskFormProvider oldWidget) {
+    return false;
+  }
+}

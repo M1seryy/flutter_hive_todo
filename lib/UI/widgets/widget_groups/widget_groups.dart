@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive_todo_list/domain/entity/group.dart';
-import 'package:hive_todo_list/widgets/widget_groups/widget_group_model.dart';
+import 'package:hive_todo_list/UI/widgets/widget_groups/widget_group_model.dart';
 
 class Group_widget_screeen extends StatefulWidget {
   const Group_widget_screeen({super.key});

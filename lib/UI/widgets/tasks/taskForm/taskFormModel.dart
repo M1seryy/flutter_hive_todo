@@ -23,6 +23,7 @@ class taskFormModel {
 
     final group = box.get(groupKey);
     group?.addTask(taskBox, task);
+    taskBox.close();
     Navigator.of(context).pop();
   }
 }

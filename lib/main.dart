@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hive_todo_list/UI/NAVIGATION/mainNavigation.dart';
 import 'package:hive_todo_list/domain/entity/group.dart';
-import 'package:hive_todo_list/widgets/UI/tasks/taskForm/taskForm.dart';
-import 'package:hive_todo_list/widgets/UI/tasks/tasks/taskWidget.dart';
-import 'package:hive_todo_list/widgets/widget_form/widget_form.dart';
-import 'package:hive_todo_list/widgets/widget_groups/widget_groups.dart';
-import 'package:hive_todo_list/widgets/widget_form/widget_model.dart';
+import 'package:hive_todo_list/UI/widgets/tasks/taskForm/taskForm.dart';
+import 'package:hive_todo_list/UI/widgets/tasks/tasks/taskWidget.dart';
+import 'package:hive_todo_list/UI/widgets/widget_form/widget_form.dart';
+import 'package:hive_todo_list/UI/widgets/widget_groups/widget_groups.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
 
@@ -23,15 +23,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final mainNav = mainNavigation();
     return MaterialApp(
       title: 'Flutter Demo',
-      routes: {
-        "/groups/": (context) => const Group_widget_screeen(),
-        "/groups/form": (context) => WidgetForm(),
-        "/groups/task": (context) => TaskWidget(),
-        "/groups/task/form": (context) => Taskform(),
-      },
-      initialRoute: "/groups/",
+      routes: mainNav.routes,
+      initialRoute: mainNav.initialRoute,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

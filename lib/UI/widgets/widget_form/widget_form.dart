@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hive_todo_list/widgets/widget_form/widget_model.dart';
+import 'package:hive_todo_list/UI/widgets/widget_form/widget_model.dart';
 
 class WidgetForm extends StatelessWidget {
   WidgetForm({super.key});

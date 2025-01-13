@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hive_todo_list/widgets/UI/tasks/taskForm/taskFormModel.dart';
+import 'package:hive_todo_list/UI/widgets/tasks/taskForm/taskFormModel.dart';
 
 class Taskform extends StatefulWidget {
   const Taskform({super.key});

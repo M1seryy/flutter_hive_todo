@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:hive/hive.dart';
 import 'package:hive_todo_list/UI/widgets/tasks/tasks/taskWidgetModel.dart';
+import 'package:hive_todo_list/domain/entity/group.dart';
+import 'package:hive_todo_list/domain/entity/task.dart';
+
+class taskWidgetConfig {
+  final int groupKey;
+  final String title;
+
+  taskWidgetConfig({required this.groupKey, required this.title});
+}
 
 class TaskWidget extends StatefulWidget {
-  const TaskWidget({super.key});
+  
+  final taskWidgetConfig config;
+  const TaskWidget({super.key, required this.config});
 
   @override
   State<TaskWidget> createState() => _TaskWidgetState();
 }
 
 class _TaskWidgetState extends State<TaskWidget> {
-  TaskWidgetModel? _model;
+  late final TaskWidgetModel _model;
   @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    if (_model == null) {
-      final groupKey = ModalRoute.of(context)!.settings.arguments as int;
-      _model = TaskWidgetModel(groupKey: groupKey);
-    }
+  void initState() {
+    _model = TaskWidgetModel(config: widget.config);
   }
 
   @override
@@ -43,7 +50,7 @@ class TaskWidetBody extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(model?.groups?.name ?? "Tasks"),
+        title: Text(model?.config.title ?? "Tasks"),
       ),
       body: TaskListWidget(),
       floatingActionButton: FloatingActionButton(

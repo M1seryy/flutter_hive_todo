@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:hive_todo_list/UI/widgets/tasks/taskForm/taskFormModel.dart';
 
 class Taskform extends StatefulWidget {
-  const Taskform({super.key});
+  final groupKey;
+  const Taskform({super.key, required this.groupKey});
 
   @override
   State<Taskform> createState() => _TaskformState();
 }
 
 class _TaskformState extends State<Taskform> {
-  taskFormModel? _model;
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    if (_model == null) {
-      final groupKey = ModalRoute.of(context)!.settings.arguments as int;
-      _model = taskFormModel(groupKey: groupKey);
-    }
+  late final taskFormModel _model;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _model = taskFormModel(groupKey: widget.groupKey);
   }
 
   @override
